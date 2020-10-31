@@ -1,18 +1,18 @@
-import { link } from 'fs';
 import React from 'react';
-import NewTodo from './NewTodo';
 
 interface Props {
-  items: {id: string, text: string}[];
+  items: { id: string; text: string }[];
+  handleDeleteTodo: (id: string) => void;
 }
 
-const TodoList: React.FC<Props> = ({items}) => {
-  
+const TodoList: React.FC<Props> = ({ items, handleDeleteTodo }) => {
   return (
     <ul>
-      <NewTodo />
       {items.map(({ id, text }) => (
-        <li key={id}>{text}</li>
+        <li key={id}>
+          <span>{text}</span>
+          <button onClick={() => handleDeleteTodo(id)}>Delete</button>
+        </li>
       ))}
     </ul>
   );

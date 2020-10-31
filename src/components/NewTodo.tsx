@@ -1,11 +1,16 @@
 import React, { useState } from 'react';
 
-const NewTodo: React.FC = () => {
+interface Props {
+  handleAddTodo: (text: string) => void;
+}
+
+const NewTodo: React.FC<Props> = ({ handleAddTodo }) => {
   const [todoText, setTodoText] = useState('');
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    console.log(todoText);
+    handleAddTodo(todoText);
+    setTodoText('');
   };
 
   return (
